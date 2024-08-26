@@ -1,0 +1,13 @@
+{
+    "labels": ["Foundation", "Superstructure", "Facade", "Interiors"],
+    "datasets": [
+        {
+            "label": "Progress (%)",
+            "data": [20, 40, 70, 90], 
+            "backgroundColor": "rgba(75, 192, 192, 0.2)",
+            "borderColor": "rgba(75, 192, 192, 1)",
+            "borderWidth": 2,
+            "tension": 0.4 
+        }
+    ]
+}
