@@ -1,38 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
-import MapView from './MapView'; // Import the MapView component
-import projectsData from '../data/projects.json'; // Import the JSON data directly
-import ProjectDetailView from './ProjectDetailView'; // Import the ProjectDetailView component
-import Footer from './Footer'; // Import the Footer component
+
+import React, { useState, useEffect } from "react";
+import { Doughnut } from "react-chartjs-2";
+import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
+import MapView from "./MapView";
+import projectsData from "../data/projects.json";
+import ProjectDetailView from "./ProjectDetailView";
+import Footer from "./Footer";
 
 // Register the necessary components
 Chart.register(ArcElement, Tooltip, Legend);
 
 const Dashboard = () => {
-  const [showMap, setShowMap] = useState(false); // State to toggle between ProjectList and MapView
-  const [projects, setProjects] = useState([]); // State to store projects data
-  const [showProjectDetail, setShowProjectDetail] = useState(false); // State to toggle ProjectDetailView
-  const [selectedProject, setSelectedProject] = useState(null); // State to store selected project
+  const [showMap, setShowMap] = useState(false);
+  const [projects, setProjects] = useState([]);
+  const [showProjectDetail, setShowProjectDetail] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
-    // Since the data is static and imported, just set it directly
     setProjects(projectsData);
   }, []);
 
   const data = {
-    labels: ['Foundation', 'Superstructure', 'Facade', 'Interiors'],
+    labels: ["Foundation", "Superstructure", "Facade", "Interiors"],
     datasets: [
       {
-        data: [25, 35, 15, 25], // Example data distribution
-        backgroundColor: ['#e86f6f', '#e6c146', '#04c7b6', '#9b59b6'], // Colors for each segment
+        data: [25, 35, 15, 25],
+        backgroundColor: ["#FF6F00", "#F4A261", "#04C7B6", "#9B59B6"],
         borderWidth: 0,
       },
     ],
   };
 
   const options = {
-    cutout: '70%',
+    cutout: "70%",
     plugins: {
       legend: {
         display: false,
@@ -51,107 +51,128 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-900 text-white">
-      <header className="flex justify-between items-center mb-6 p-6">
+    <div className="min-h-screen flex flex-col bg-[#F5F5F5] text-[#333333]">
+      <header className="flex justify-between items-center mb-6 p-6 bg-white">
         <div>
-          <h1 className="text-3xl font-bold">Welcome Raj</h1>
+          <h1 className="text-5xl font-bold">Welcome Raj</h1>
         </div>
-        <div className="w-60 h-60 relative"> {/* Increased size */}
+        <div className="w-60 h-60 relative">
           <Doughnut data={data} options={options} />
-          <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-white">
+          <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-[#333333]">
             <div className="text-xl">Construction</div>
             <div className="text-3xl font-bold">Progress</div>
           </div>
         </div>
       </header>
 
-      {/* Legend below the pie chart with increased font size */}
-      <div className="flex justify-center items-center mb-6 text-base"> {/* Updated from text-xs to text-base */}
+      <div className="flex justify-center items-center mb-6 text-base text-[#333333]">
         <div className="flex items-center mr-4">
-          <div className="w-3 h-3 mr-1" style={{ backgroundColor: '#e86f6f' }}></div>
+          <div
+            className="w-3 h-3 mr-1"
+            style={{ backgroundColor: "#FF6F00" }}
+          ></div>
           <span>Foundation</span>
         </div>
         <div className="flex items-center mr-4">
-          <div className="w-3 h-3 mr-1" style={{ backgroundColor: '#e6c146' }}></div>
+          <div
+            className="w-3 h-3 mr-1"
+            style={{ backgroundColor: "#F4A261" }}
+          ></div>
           <span>Superstructure</span>
         </div>
         <div className="flex items-center mr-4">
-          <div className="w-3 h-3 mr-1" style={{ backgroundColor: '#04c7b6' }}></div>
+          <div
+            className="w-3 h-3 mr-1"
+            style={{ backgroundColor: "#04C7B6" }}
+          ></div>
           <span>Facade</span>
         </div>
         <div className="flex items-center">
-          <div className="w-3 h-3 mr-1" style={{ backgroundColor: '#9b59b6' }}></div>
+          <div
+            className="w-3 h-3 mr-1"
+            style={{ backgroundColor: "#9B59B6" }}
+          ></div>
           <span>Interiors</span>
         </div>
       </div>
 
       <div className="flex justify-between items-center mb-6 px-6">
         <button
-          className="bg-gray-700 px-4 py-2 rounded"
+          className="bg-[#04C7B6] text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
           onClick={handleBackToProjectList}
         >
           Project View
         </button>
-        <button className="bg-gray-700 px-4 py-2 rounded" onClick={() => setShowMap(true)}>
+        <button
+          className="bg-[#04C7B6] text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
+          onClick={() => setShowMap(true)}
+        >
           Map View
         </button>
       </div>
 
-      <div className="flex-grow px-6 pb-10"> {/* Added padding-bottom */}
+      <div className="flex-grow px-6 pb-10">
         {showMap ? (
-          <MapView /> // Display the MapView component if showMap is true
+          <MapView />
         ) : showProjectDetail && selectedProject ? (
           <ProjectDetailView
-            locationName={selectedProject.name} // Pass the selected project's name as the location name
-            stage={selectedProject.stage} // Pass the selected project's stage number
+            locationName={selectedProject.name}
+            stage={selectedProject.stage}
           />
         ) : (
           <div>
             <div className="mb-6">
-              <h2 className="text-xl">Project List</h2>
+              <h2 className="text-xl text-[#333333]">Project List</h2>
               <div className="mt-4">
                 {projects.length > 0 ? (
                   projects.map((project, index) => (
                     <div
                       key={index}
-                      className="flex justify-between items-center mb-4 p-4 bg-gray-800 rounded"
-                      onClick={() => handleProjectClick(project)} // Set selected project on click
+                      className="flex justify-between items-center mb-4 p-4 bg-[#E0E0E0] rounded transition-transform transform hover:scale-105 cursor-pointer"
+                      onClick={() => handleProjectClick(project)}
                     >
-                      <div className="text-lg font-semibold">{project.name}</div>
+                      <div className="text-lg font-semibold">
+                        {project.name}
+                      </div>
                       <div className="flex items-center">
                         <div className="text-sm mr-4">{project.stage}</div>
                         <div
                           className={`w-4 h-4 rounded-full ${
-                            project.status === 'not_progressing'
-                              ? 'bg-red-500'
-                              : project.status === 'incomplete_lazy'
-                              ? 'bg-yellow-500'
-                              : 'bg-green-500'
+                            project.status === "not_progressing"
+                              ? "bg-red-600"
+                              : project.status === "incomplete_lazy"
+                              ? "bg-yellow-600"
+                              : "bg-green-600"
                           }`}
                         ></div>
                       </div>
                     </div>
                   ))
                 ) : (
-                  <div className="text-gray-500">Loading projects...</div>
+                  <div className="text-gray-600">Loading projects...</div>
                 )}
               </div>
             </div>
 
             <div className="mt-8">
-              <h3 className="text-lg">Notes:</h3>
+              <h3 className="text-lg text-[#333333] font-semibold">Notes:</h3>
               <ul>
-                <li className="text-green-500">Green: No attention needed, consistent progress</li>
-                <li className="text-yellow-500">Yellow: Inconsistent progress, needs monitoring</li>
-                <li className="text-red-500">Red: No progress for 7 days, needs attention</li>
+                <li className="text-green-600 font-semibold">
+                  Green: No attention needed, consistent progress
+                </li>
+                <li className="text-yellow-600 font-semibold">
+                  Yellow: Inconsistent progress, needs monitoring
+                </li>
+                <li className="text-red-600 font-semibold">
+                  Red: No progress for 7 days, needs attention
+                </li>
               </ul>
             </div>
           </div>
         )}
       </div>
-
-      {/* Footer now fixed at the bottom with margin-top */}
-      <Footer className="mt-12" /> {/* Added margin-top to create space between content and footer */}
+      
+      <Footer className="mt-12" />
     </div>
   );
 };

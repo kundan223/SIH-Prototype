@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Footer from './Footer';
 
@@ -64,9 +65,9 @@ const ProgressTracker = () => {
 
   return (
     <>
-      <div className="bg-neutral-900 p-6 min-h-screen flex flex-col items-center">
-        <div className="w-full max-w-2xl mx-auto bg-yellow-400 shadow-md rounded-lg p-8">
-          <h1 className="text-3xl font-bold mb-6 text-center">Construction Site Monitoring</h1>
+      <div className="bg-white p-6 min-h-screen flex flex-col items-center">
+        <div className="w-full max-w-2xl mx-auto bg-gray-200 shadow-md rounded-lg p-8">
+          <h1 className="text-3xl font-bold mb-6 text-center text-teal-600">Construction Site Monitoring</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
               <label htmlFor="activityType" className="block text-sm font-medium text-gray-700">Select Activity Type:</label>
@@ -75,7 +76,7 @@ const ProgressTracker = () => {
                 value={activityType}
                 onChange={(e) => setActivityType(e.target.value)}
                 required
-                className="mt-2 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-black focus:border-black sm:text-sm rounded-md"
+                className="mt-2 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
               >
                 <option value="">Select</option>
                 <option value="foundation">Foundation</option>
@@ -92,7 +93,7 @@ const ProgressTracker = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
-                className="mt-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md focus:ring-black focus:border-black px-3 py-2"
+                className="mt-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500 px-3 py-2"
                 rows="5"
               ></textarea>
             </div>
@@ -106,13 +107,13 @@ const ProgressTracker = () => {
                 accept="image/*"
                 onChange={handleImageUpload}
                 required
-                className="mt-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-black focus:border-black"
+                className="mt-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white py-3 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+              className="w-full bg-orange-500 text-white py-3 px-4 rounded-md shadow-sm hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             >
               Submit
             </button>
@@ -120,13 +121,13 @@ const ProgressTracker = () => {
         </div>
 
         <div className="w-full max-w-5xl mx-auto mt-8">
-          <h2 className="text-xl font-semibold mb-4 text-yellow-400">Activities</h2>
+          <h2 className="text-xl font-semibold mb-4 text-orange-500">Activities</h2>
           <div className="space-y-6">
             {activities.map((activity, index) => (
-              <div key={index} className="p-4 bg-neutral-800 rounded-lg">
-                <p className="text-white"><strong>Activity Type:</strong> {activity.activityType}</p>
-                <p className="text-white"><strong>Description:</strong> {activity.description}</p>
-                <p className="text-white"><strong>Timestamp:</strong> {activity.timestamp}</p>
+              <div key={index} className="p-4 bg-gray-100 rounded-lg shadow-md">
+                <p className="text-gray-800"><strong>Activity Type:</strong> {activity.activityType}</p>
+                <p className="text-gray-800"><strong>Description:</strong> {activity.description}</p>
+                <p className="text-gray-800"><strong>Timestamp:</strong> {activity.timestamp}</p>
                 {activity.images && activity.images.length > 0 && (
                   <div className="mt-4 grid grid-cols-2 gap-4">
                     {activity.images.map((img, imgIndex) => (
@@ -139,7 +140,7 @@ const ProgressTracker = () => {
                         <div className="mt-2 text-center">
                           <button
                             onClick={() => openImageModal(img)}
-                            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+                            className="bg-teal-500 text-white py-2 px-4 rounded-md hover:bg-teal-600"
                           >
                             View Full Image
                           </button>
@@ -189,3 +190,4 @@ const ProgressTracker = () => {
 };
 
 export default ProgressTracker;
+

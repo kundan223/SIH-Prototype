@@ -1,16 +1,21 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="bg-yellow-400 p-4 shadow-md">
+    <nav className="bg-[#FF6F00] p-4 shadow-md"> {/* Updated background color to orange */}
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="text-xl font-bold">
+        <div className="text-xl font-bold text-white"> {/* Updated text color to white */}
           <Link to="/">YourWebsiteName</Link>
         </div>
         <div className="flex space-x-4">
-          <Link to="/" className="text-xl font-bold">Dashboard</Link>
-          <Link to="/tracker" className="text-xl font-bold">Progress Tracker</Link>
+          <Link to="/" className="text-xl font-bold text-white"> {/* Updated text color to white */}
+            Dashboard
+          </Link>
+          <Link to="/tracker" className="text-xl font-bold text-white"> {/* Updated text color to white */}
+            Progress Tracker
+          </Link>
         </div>
       </div>
     </nav>
