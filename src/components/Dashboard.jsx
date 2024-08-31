@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
@@ -97,18 +96,22 @@ const Dashboard = () => {
       </div>
 
       <div className="flex justify-between items-center mb-6 px-6">
-        <button
-          className="bg-[#04C7B6] text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
-          onClick={handleBackToProjectList}
-        >
-          Project View
-        </button>
-        <button
-          className="bg-[#04C7B6] text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
-          onClick={() => setShowMap(true)}
-        >
-          Map View
-        </button>
+        <div className="relative overflow-hidden">
+          <button
+            className="bg-[#04C7B6] text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
+            onClick={handleBackToProjectList}
+          >
+            Project View
+          </button>
+        </div>
+        <div className="relative overflow-hidden ml-4">
+          <button
+            className="bg-[#04C7B6] text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
+            onClick={() => setShowMap(true)}
+          >
+            Map View
+          </button>
+        </div>
       </div>
 
       <div className="flex-grow px-6 pb-10">
@@ -128,7 +131,7 @@ const Dashboard = () => {
                   projects.map((project, index) => (
                     <div
                       key={index}
-                      className="flex justify-between items-center mb-4 p-4 bg-[#E0E0E0] rounded transition-transform transform hover:scale-105 cursor-pointer"
+                      className="flex justify-between items-center mb-4 p-6 scale-95 bg-[#E0E0E0] rounded transition-transform transform hover:scale-100 hover:shadow-lg cursor-pointer"
                       onClick={() => handleProjectClick(project)}
                     >
                       <div className="text-lg font-semibold">
