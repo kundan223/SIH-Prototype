@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import ProgressTracker from './components/ProgressTracker';
+import Demo from './components/Demo'; // Import the Demo component
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/tracker" element={<ProgressTracker />} />
+          <Route path="/demo" element={<Demo />} /> {/* Added route for Demo component */}
         </Routes>
       </div>
     </Router>
@@ -19,3 +21,4 @@ function App() {
 }
 
 export default App;
+

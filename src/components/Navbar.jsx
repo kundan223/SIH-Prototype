@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,6 +14,9 @@ const Navbar = () => {
           </Link>
           <Link to="/tracker" className="text-xl font-bold text-white"> {/* Updated text color to white */}
             Progress Tracker
+          </Link>
+          <Link to="/demo" className="text-xl font-bold text-white"> {/* Added link to Demo */}
+            Demo
           </Link>
         </div>
       </div>

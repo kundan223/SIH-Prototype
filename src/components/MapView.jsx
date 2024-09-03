@@ -1,81 +1,65 @@
-// src/ConstructionMap.js
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-
-// Define the URL for fetching the GeoJSON data
-const GEOJSON_URL = '/geojson';
-
-// Define the bounding box for India (approximate)
-const indiaBounds = [
-  [6.5546079, 68.1113787],   // Southwest corner of India
-  [35.6745457, 97.395555],   // Northeast corner of India
-];
+import React, { useEffect, useRef } from 'react';
+import * as d3 from 'd3';
+import indiaGeojson from '../data/StatesGeojsonIndia.json'; // Ensure the path is correct
 
 const ConstructionMap = ({ data }) => {
-  const [geojsonData, setGeojsonData] = useState(null);
+  const mapContainer = useRef(null);
 
-  // Fetch the GeoJSON data from the Flask backend
   useEffect(() => {
-    const fetchGeojsonData = async () => {
-      try {
-        const response = await fetch(GEOJSON_URL);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+    if (!mapContainer.current) return;
+
+    // Clear previous SVG if any
+    d3.select(mapContainer.current).selectAll('*').remove();
+
+    const width = 800;
+    const height = 600;
+
+    const svg = d3.select(mapContainer.current)
+      .append('svg')
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet');
+
+    const projection = d3.geoMercator()
+      .center([78.9629, 20.5937])  // Center on India
+      .scale(1000)                 // Adjust this scale as needed
+      .translate([width / 2, height / 2]);
+
+    const path = d3.geoPath().projection(projection);
+
+    svg.selectAll('path')
+      .data(indiaGeojson.features)
+      .enter()
+      .append('path')
+      .attr('d', path)
+      .attr('stroke', 'black')
+      .attr('fill', d => {
+        const region = d.properties.NAME_1; // Use NAME_1 to get the state name
+        console.log("Region:", region); // Log the region name to confirm
+        const activity = data[region];
+        console.log("Activity:", activity); // Log the activity based on the region
+
+        // Color logic
+        if (activity === 'not_progressing') {
+          return 'red';
+        } else if (activity === 'incomplete_lazy') {
+          return 'yellow';
+        } else if (activity === 'progressing_fine') {
+          return 'green';
+        } else {
+          return 'gray';  // Default color for regions with no data
         }
-        const json = await response.json();
-        setGeojsonData(json);
-      } catch (error) {
-        console.error('Error fetching GeoJSON data:', error);
-      }
+      })
+      .attr('fill-opacity', 0.7);
+
+    // Clean up SVG on component unmount
+    return () => {
+      svg.remove();
     };
+  }, [data]);
 
-    fetchGeojsonData();
-  }, []);
-
-  // Define the style function to color states based on construction activity
-  const getRegionStyle = (feature) => {
-    const region = feature.properties.name; // Assuming the region name is stored in "name"
-    const activity = data[region]; // Assuming data is an object with region names as keys
-
-    let fillColor;
-    if (activity === 'not_progressing') {
-      fillColor = 'red';
-    } else if (activity === 'incomplete_lazy') {
-      fillColor = 'yellow';
-    } else if (activity === 'progressing_fine') {
-      fillColor = 'green';
-    } else {
-      fillColor = 'gray'; // Default color for regions with no data
-    }
-
-    return {
-      fillColor,
-      weight: 2,
-      opacity: 1,
-      color: 'black', // Boundary color for states
-      dashArray: '3',
-      fillOpacity: 0.7
-    };
-  };
-
-  return (
-    <MapContainer
-      center={[20.5937, 78.9629]}      // Center the map on India
-      zoom={5}                         // Appropriate zoom level for India
-      minZoom={5}                      // Prevent zooming out beyond India
-      maxZoom={10}                     // Allow zooming in to a closer view
-      scrollWheelZoom={false}          // Disable scroll wheel zoom to avoid zooming out
-      style={{ height: '100vh', width: '100%' }}
-      maxBounds={indiaBounds}          // Set max bounds to restrict panning
-    >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-      {geojsonData && <GeoJSON data={geojsonData} style={getRegionStyle} />}
-    </MapContainer>
-  );
+  return <div ref={mapContainer} style={{ height: '100vh', width: '100%' }} />;
 };
 
 export default ConstructionMap;

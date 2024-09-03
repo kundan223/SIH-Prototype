@@ -4,6 +4,7 @@ import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import MapView from "./MapView";
 import projectsData from "../data/projects.json";
 import ProjectDetailView from "./ProjectDetailView";
+import constructionData from "../data/constructionData.json";
 import Footer from "./Footer";
 
 // Register the necessary components
@@ -116,7 +117,7 @@ const Dashboard = () => {
 
       <div className="flex-grow px-6 pb-10">
         {showMap ? (
-          <MapView />
+          <MapView data={constructionData} />
         ) : showProjectDetail && selectedProject ? (
           <ProjectDetailView
             locationName={selectedProject.name}
