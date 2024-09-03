@@ -28,6 +28,17 @@ const ConstructionMap = ({ data }) => {
 
     const path = d3.geoPath().projection(projection);
 
+    // Tooltip div
+    const tooltip = d3.select('body')
+      .append('div')
+      .style('position', 'absolute')
+      .style('visibility', 'hidden')
+      .style('background', 'white')
+      .style('border', '1px solid #ccc')
+      .style('border-radius', '4px')
+      .style('padding', '8px')
+      .style('box-shadow', '0 4px 8px rgba(0, 0, 0, 0.1)');
+
     svg.selectAll('path')
       .data(indiaGeojson.features)
       .enter()
@@ -43,7 +54,7 @@ const ConstructionMap = ({ data }) => {
         // Color logic
         if (activity === 'not_progressing') {
           return 'red';
-        } else if (activity === 'incomplete_lazy') {
+        } else if (activity === 'incomplete_work') {
           return 'yellow';
         } else if (activity === 'progressing_fine') {
           return 'green';
@@ -51,11 +62,29 @@ const ConstructionMap = ({ data }) => {
           return 'gray';  // Default color for regions with no data
         }
       })
-      .attr('fill-opacity', 0.7);
+      .attr('fill-opacity', 0.7)
+      .on('mouseover', function (event, d) {
+        const region = d.properties.NAME_1;
+        const activity = data[region] || 'No Data';
+        tooltip
+          .style('visibility', 'visible')
+          .text(`Region: ${region} | Activity: ${activity}`);
+        d3.select(this).attr('fill-opacity', 1);  // Highlight on hover
+      })
+      .on('mousemove', function (event) {
+        tooltip
+          .style('top', `${event.pageY + 10}px`)
+          .style('left', `${event.pageX + 10}px`);
+      })
+      .on('mouseout', function () {
+        tooltip.style('visibility', 'hidden');
+        d3.select(this).attr('fill-opacity', 0.7);  // Reset opacity
+      });
 
-    // Clean up SVG on component unmount
+    // Clean up SVG and tooltip on component unmount
     return () => {
       svg.remove();
+      tooltip.remove();
     };
   }, [data]);
 
