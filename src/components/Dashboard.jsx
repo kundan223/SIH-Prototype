@@ -6,6 +6,7 @@ import projectsData from "../data/projects.json";
 import ProjectDetailView from "./ProjectDetailView";
 import constructionData from "../data/constructionData.json";
 import Footer from "./Footer";
+import HeroSection from "./hersection";
 
 // Register the necessary components
 Chart.register(ArcElement, Tooltip, Legend);
@@ -51,50 +52,51 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F5F5F5] text-[#333333]">
-      <header className="flex justify-between items-center mb-6 p-6 bg-white">
-        <div>
-          <h1 className="text-5xl font-bold">Welcome Raj</h1>
-        </div>
-        <div className="w-60 h-60 relative">
-          <Doughnut data={data} options={options} />
-          <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-[#333333]">
-            <div className="text-xl">Construction</div>
-            <div className="text-3xl font-bold">Progress</div>
-          </div>
-        </div>
-      </header>
-
-      <div className="flex justify-center items-center mb-6 text-base text-[#333333]">
-        <div className="flex items-center mr-4">
-          <div
-            className="w-3 h-3 mr-1"
-            style={{ backgroundColor: "#FF6F00" }}
-          ></div>
-          <span>Foundation</span>
-        </div>
-        <div className="flex items-center mr-4">
-          <div
-            className="w-3 h-3 mr-1"
-            style={{ backgroundColor: "#F4A261" }}
-          ></div>
-          <span>Superstructure</span>
-        </div>
-        <div className="flex items-center mr-4">
-          <div
-            className="w-3 h-3 mr-1"
-            style={{ backgroundColor: "#04C7B6" }}
-          ></div>
-          <span>Facade</span>
-        </div>
-        <div className="flex items-center">
-          <div
-            className="w-3 h-3 mr-1"
-            style={{ backgroundColor: "#9B59B6" }}
-          ></div>
-          <span>Interiors</span>
-        </div>
+    <div className="min-h-screen flex-col bg-[#F7E8CA] text-[#333333] flex">
+      <header className="flex mb-6 p-6">
+  <div className="flex-1 flex items-center justify-center">
+    <div className="w-60 h-60 relative  flex items-center justify-center">
+      <Doughnut data={data} options={options} />
+      <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-[#333333]">
+        <div className="text-xl">Construction</div>
+        <div className="text-3xl font-bold">Progress</div>
       </div>
+    </div>
+  </div>
+  <div className="flex-1 flex items-center justify-center">
+    <div className="flex flex-col">
+      <div className="flex items-center mb-2">
+        <div
+          className="w-3 h-3 mr-2"
+          style={{ backgroundColor: "#FF6F00" }}
+        ></div>
+        <span>Foundation</span>
+      </div>
+      <div className="flex items-center mb-2">
+        <div
+          className="w-3 h-3 mr-2"
+          style={{ backgroundColor: "#F4A261" }}
+        ></div>
+        <span>Superstructure</span>
+      </div>
+      <div className="flex items-center mb-2">
+        <div
+          className="w-3 h-3 mr-2"
+          style={{ backgroundColor: "#04C7B6" }}
+        ></div>
+        <span>Facade</span>
+      </div>
+      <div className="flex items-center">
+        <div
+          className="w-3 h-3 mr-2"
+          style={{ backgroundColor: "#9B59B6" }}
+        ></div>
+        <span>Interiors</span>
+      </div>
+    </div>
+  </div>
+</header>
+
 
       <div className="flex justify-between items-center mb-6 px-6">
         <div className="relative overflow-hidden">

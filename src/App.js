@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Dashboard from './components/Dashboard';
 import ProgressTracker from './components/ProgressTracker';
-import Demo from './components/Demo'; // Import the Demo component
+import HeroSection from './components/hersection';
+import RedirectToExternal from './components/RedirectToExternal'; // Import the Redirect component
 
 function App() {
   return (
@@ -11,9 +11,9 @@ function App() {
       <div className="min-h-screen bg-gray-100">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<HeroSection />} />
           <Route path="/tracker" element={<ProgressTracker />} />
-          <Route path="/demo" element={<Demo />} /> {/* Added route for Demo component */}
+          <Route path="/demo" element={<RedirectToExternal />} /> {/* Route for external redirect */}
         </Routes>
       </div>
     </Router>
@@ -21,4 +21,3 @@ function App() {
 }
 
 export default App;
-
