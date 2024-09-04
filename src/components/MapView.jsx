@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-import indiaGeojson from '../data/StatesGeojsonIndia.json'; // Ensure the path is correct
+import upGeojson from '../data/UttarPradeshGeojson.json'; // Ensure the path is correct
 
 const ConstructionMap = ({ data }) => {
   const mapContainer = useRef(null);
@@ -22,8 +22,8 @@ const ConstructionMap = ({ data }) => {
       .attr('preserveAspectRatio', 'xMidYMid meet');
 
     const projection = d3.geoMercator()
-      .center([78.9629, 20.5937])  // Center on India
-      .scale(1000)                 // Adjust this scale as needed
+      .center([80.9462, 26.8467])  // Center on Uttar Pradesh
+      .scale(4000)                 // Adjust this scale as needed
       .translate([width / 2, height / 2]);
 
     const path = d3.geoPath().projection(projection);
@@ -40,16 +40,14 @@ const ConstructionMap = ({ data }) => {
       .style('box-shadow', '0 4px 8px rgba(0, 0, 0, 0.1)');
 
     svg.selectAll('path')
-      .data(indiaGeojson.features)
+      .data(upGeojson.features)
       .enter()
       .append('path')
       .attr('d', path)
       .attr('stroke', 'black')
       .attr('fill', d => {
-        const region = d.properties.NAME_1; // Use NAME_1 to get the state name
-        console.log("Region:", region); // Log the region name to confirm
-        const activity = data[region];
-        console.log("Activity:", activity); // Log the activity based on the region
+        const district = d.properties.Name;
+        const activity = data[district];
 
         // Color logic
         if (activity === 'not_progressing') {
@@ -64,11 +62,11 @@ const ConstructionMap = ({ data }) => {
       })
       .attr('fill-opacity', 0.7)
       .on('mouseover', function (event, d) {
-        const region = d.properties.NAME_1;
-        const activity = data[region] || 'No Data';
+        const district = d.properties.Name;
+        const activity = data[district] || 'No Data';
         tooltip
           .style('visibility', 'visible')
-          .text(`Region: ${region} | Activity: ${activity}`);
+          .text(`District: ${district} | Activity: ${activity}`);
         d3.select(this).attr('fill-opacity', 1);  // Highlight on hover
       })
       .on('mousemove', function (event) {
@@ -88,7 +86,14 @@ const ConstructionMap = ({ data }) => {
     };
   }, [data]);
 
-  return <div ref={mapContainer} style={{ height: '100vh', width: '100%' }} />;
+  return (
+    <div style={{ height: '100vh', width: '100%' }}>
+      <h2 style={{ textAlign: 'center', marginBottom: '20px', fontSize: '24px', fontWeight: 'bold' }}>
+        Uttar Pradesh District Construction Progress Map
+      </h2>
+      <div ref={mapContainer} style={{ height: '90vh', width: '100%' }} />
+    </div>
+  );
 };
 
 export default ConstructionMap;
