@@ -50,11 +50,11 @@ const ConstructionMap = ({ data }) => {
         const activity = data[district];
 
         // Color logic
-        if (activity === 'not_progressing') {
+        if (activity === 'need_attention') {
           return 'red';
-        } else if (activity === 'incomplete_work') {
+        } else if (activity === 'inconsistent') {
           return 'yellow';
-        } else if (activity === 'progressing_fine') {
+        } else if (activity === 'no_action_needed') {
           return 'green';
         } else {
           return 'gray';  // Default color for regions with no data

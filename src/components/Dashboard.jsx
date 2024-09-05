@@ -158,7 +158,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="mt-8">
+            {/* <div className="mt-8">
               <h3 className="text-lg text-[#333333] font-semibold">Notes:</h3>
               <ul>
                 <li className="text-green-600 font-semibold">
@@ -171,7 +171,7 @@ const Dashboard = () => {
                   Red: No progress for 7 days, needs attention
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         )}
       </div>
