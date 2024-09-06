@@ -7,6 +7,7 @@ import ProjectDetailView from "./ProjectDetailView";
 import constructionData from "../data/constructionData.json";
 import Footer from "./Footer";
 import HeroSection from "./hersection";
+import Building from "../assets/building.png"
 
 
 // Register the necessary components
@@ -54,51 +55,60 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen flex-col bg-white text-[#333333] flex">
-      <div className="rounded-3xl bg-gradient-to-r bg-[#dfecac62] m-6 ">
+      <div className="rounded-3xl bg-gradient-to-r bg-[#f3ffc5b7] m-6 ">
       <header className="flex mb-6 p-6 mt-[60px]">
   
       <div className="flex-1 flex items-center justify-center">
-  <div className="flex flex-col space-y-2">
-    <div className="flex items-center group">
-      <div
-        className="w-4 h-4 mr-3 transition-transform transform group-hover:scale-110"
-        style={{ backgroundColor: "#FF6F00" }}
-      ></div>
-      <span className="text-gray-800 group-hover:text-[#FF6F00] transition-colors">Foundation</span>
-    </div>
-    <div className="flex items-center group">
-      <div
-        className="w-4 h-4 mr-3 transition-transform transform group-hover:scale-110"
-        style={{ backgroundColor: "#F4A261" }}
-      ></div>
-      <span className="text-gray-800 group-hover:text-[#F4A261] transition-colors">Superstructure</span>
-    </div>
-    <div className="flex items-center group">
-      <div
-        className="w-4 h-4 mr-3 transition-transform transform group-hover:scale-110"
-        style={{ backgroundColor: "#04C7B6" }}
-      ></div>
-      <span className="text-gray-800 group-hover:text-[#04C7B6] transition-colors">Facade</span>
-    </div>
-    <div className="flex items-center group">
-      <div
-        className="w-4 h-4 mr-3 transition-transform transform group-hover:scale-110"
-        style={{ backgroundColor: "#9B59B6" }}
-      ></div>
-      <span className="text-gray-800 group-hover:text-[#9B59B6] transition-colors">Interiors</span>
+      <div className="flex flex-col space-y-6 p-6 bg-gradient-to-b rounded-lg">
+  <div className="flex items-center group">
+    <div
+      className="w-10 h-10 mr-4 flex-shrink-0 rounded-full border-2 border-green-400 bg-green-200 group-hover:bg-green-300 transition-colors"
+    ></div>
+    <span className="text-2xl font-medium text-gray-700 group-hover:text-green-600 transition-colors">
+      Foundation
+    </span>
+  </div>
+  <div className="flex items-center group">
+    <div
+      className="w-10 h-10 mr-4 flex-shrink-0 rounded-full border-2 border-teal-400 bg-teal-200 group-hover:bg-teal-300 transition-colors"
+    ></div>
+    <span className="text-2xl font-medium text-gray-700 group-hover:text-teal-600 transition-colors">
+      Superstructure
+    </span>
+  </div>
+  <div className="flex items-center group">
+    <div
+      className="w-10 h-10 mr-4 flex-shrink-0 rounded-full border-2 border-blue-400 bg-blue-200 group-hover:bg-blue-300 transition-colors"
+    ></div>
+    <span className="text-2xl font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
+      Masonry work
+    </span>
+  </div>
+  <div className="flex items-center group">
+    <div
+      className="w-10 h-10 mr-4 flex-shrink-0 rounded-full border-2 border-indigo-400 bg-indigo-200 group-hover:bg-indigo-300 transition-colors"
+    ></div>
+    <span className="text-2xl font-medium text-gray-700 group-hover:text-indigo-600 transition-colors">
+      Interiors
+    </span>
+  </div>
+</div>
+
+</div>
+
+<div className="flex-1 flex items-center justify-center">
+  <div
+    className="w-80 h-80 relative flex items-center justify-center bg-cover bg-center"
+    style={{ backgroundImage: "url('SIH-Prototype\src\assets\building.png')" }}
+  >
+    <Doughnut data={data} options={options} />
+    <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-[#333333]">
+      <div className="text-xl">Construction</div>
+      <div className="text-3xl font-bold">Progress</div>
     </div>
   </div>
 </div>
 
-  <div className="flex-1 flex items-center justify-center">
-    <div className="w-60 h-60 relative  flex items-center justify-center">
-      <Doughnut data={data} options={options} />
-      <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-[#333333]">
-        <div className="text-xl">Construction</div>
-        <div className="text-3xl font-bold">Progress</div>
-      </div>
-    </div>
-  </div>
 </header>
       </div>
 

@@ -31,10 +31,12 @@ const ProjectDetailView = ({ locationName, stage }) => {
   return (
     <div className="bg-white p-6 text-gray-800">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-teal-500">
+        <h2 className="text-2xl font-extrabold ">
           {locationName} - {stage}
         </h2>
+        
       </div>
+      <div className='border bg-slate-400 '></div>
 
       {/* Progress Info */}
       <div className="mb-4">
@@ -44,7 +46,6 @@ const ProjectDetailView = ({ locationName, stage }) => {
         </span>
       </div>
 
-      Combined Step Progress Bar
       <div className="relative mb-6">
         <div className="absolute top-5 left-0 w-full h-2 bg-gray-300 z-0">
           <div
@@ -90,9 +91,9 @@ const ProjectDetailView = ({ locationName, stage }) => {
           return (
             <div
               key={monthIndex}
-              className="w-1/4 bg-neutral-900 border border-gray-700 shadow-lg rounded-lg p-4 mx-2"  // Added styling for the box
+              className="w-1/4 bg-[#f3ffc5b7] rounded-lg p-4 mx-2"  // Added styling for the box
             >
-              <h4 className="text-lg font-semibold text-center mb-4 text-white">
+              <h4 className="text-lg font-semibold text-center mb-4 text-[#BCB96C]">
                 Month {monthIndex + 1} - {monthProgress.toFixed(2)}% done
               </h4>
               <div className="grid grid-cols-7 gap-1 mb-6"> {/* Reduced gap */}
