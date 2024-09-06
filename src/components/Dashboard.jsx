@@ -24,7 +24,7 @@ const Dashboard = () => {
   }, []);
 
   const data = {
-    labels: ["Foundation", "Superstructure", "Facade", "Interiors"],
+    labels: ["Foundation", "Superstructure", "Masonary work ", "Interiors"],
     datasets: [
       {
         data: [25, 35, 15, 25],
@@ -62,9 +62,9 @@ const Dashboard = () => {
       <div className="flex flex-col space-y-6 p-6 bg-gradient-to-b rounded-lg">
   <div className="flex items-center group">
     <div
-      className="w-10 h-10 mr-4 flex-shrink-0 rounded-full border-2 border-green-400 bg-green-200 group-hover:bg-green-300 transition-colors"
+      className="w-10 h-10 mr-4 flex-shrink-0 rounded-full border-2 border-orange-400 bg-orange-200 group-hover:bg-orange-300 transition-colors"
     ></div>
-    <span className="text-2xl font-medium text-gray-700 group-hover:text-green-600 transition-colors">
+    <span className="text-2xl font-medium text-gray-700 group-hover:text-orange-600 transition-colors">
       Foundation
     </span>
   </div>
@@ -78,17 +78,17 @@ const Dashboard = () => {
   </div>
   <div className="flex items-center group">
     <div
-      className="w-10 h-10 mr-4 flex-shrink-0 rounded-full border-2 border-blue-400 bg-blue-200 group-hover:bg-blue-300 transition-colors"
+      className="w-10 h-10 mr-4 flex-shrink-0 rounded-full border-2 border-orange-600 bg-orange-400 group-hover:bg-orange-500 transition-colors"
     ></div>
-    <span className="text-2xl font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
+    <span className="text-2xl font-medium text-gray-700 group-hover:text-orange-800 transition-colors">
       Masonry work
     </span>
   </div>
   <div className="flex items-center group">
     <div
-      className="w-10 h-10 mr-4 flex-shrink-0 rounded-full border-2 border-indigo-400 bg-indigo-200 group-hover:bg-indigo-300 transition-colors"
+      className="w-10 h-10 mr-4 flex-shrink-0 rounded-full border-2 border-purple-400 bg-indigo-200 group-hover:bg-purple-300 transition-colors"
     ></div>
-    <span className="text-2xl font-medium text-gray-700 group-hover:text-indigo-600 transition-colors">
+    <span className="text-2xl font-medium text-gray-700 group-hover:text-purple-600 transition-colors">
       Interiors
     </span>
   </div>
